@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}Тести{% endblock %}
+{% block navbar %}
+ <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+              <li><a href="{% url 'index' %}">Головна</a></li>
+              <li class="active"><a href="{% url 'sections' %}">Тести</a></li>
+              <li><a href="#">Contact</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <li class="active"><a href="./">Default <span class="sr-only">(current)</span></a></li>
+              <li><a href="">Static top</a></li>
+              <li><a href="">Fixed top</a></li>
+            </ul>
+          </div><!--/.nav-collapse -->
+{% endblock %}
+{% block content %}
+<div class="container-fluid">
+    <div class="alert alert-info" role="alert">
+            <h2>Розділи</h2>
+    </div>
+            <hr>
+                {% for section in sections %}
+                      <div class="col-sm-3 col-md-3">
+                        <div class="thumbnail alert alert-info">
+                            <img id="image_block" src="{{ section.section_image.url }}" alt="{{ section.section_name }}">
+                            <br>
+                            <a href="/testing/sections/{{section.section_alias}}/" class="btn btn-success btn-lg btn-block">{{ section.section_name }}</a>
+                        </div>
+                      </div>
+                {% endfor %}
+</div>
+{% endblock %}

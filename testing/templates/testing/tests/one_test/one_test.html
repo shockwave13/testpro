@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% block title %}{{ test.test_name }}{% endblock %}
+{% block navbar %}
+ <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+              <li><a href="{% url 'index' %}">Головна</a></li>
+              <li class="active"><a href="{% url 'sections' %}">Тести</a></li>
+              <li><a href="#">Contact</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <li class="active"><a href="./">Default <span class="sr-only">(current)</span></a></li>
+              <li><a href="">Static top</a></li>
+              <li><a href="">Fixed top</a></li>
+            </ul>
+          </div><!--/.nav-collapse -->
+{% endblock %}
+{% block content %}
+
+<div class="container-fluid">
+        <div class="alert alert-info" role="alert">
+            <h2>{{test.test_name}}</h2>
+        </div>
+            <hr>
+                      <div class="col-sm-12 col-md-12">
+                        <div class="thumbnail alert alert-info">
+
+                            <p class="bg-primary btn-lg">{{ forloop.counter }}:{{ question.question_text }}</p>
+                        <hr>
+                            <img id="image_block" src="{{ question.question_image.url }}" alt="{{ question.question_text }}">
+                            <hr>
+                            {% for answer in answers %}
+                           <p class="bg-primary btn-lg"><label> <input type="radio" name="answer" value="{{ answer.answer_correct }}"> {{ answer.answer_text }} </label></p>
+                            {% endfor %}
+                        <hr>
+                            <a href="/testing/sections/{{section.section_alias}}/{{test.test_alias}}/{{ question.number }}" class="btn btn-lg btn-success btn-block">Следующий вопрос</a>
+                        </div>
+                      </div>
+
+        </div>
+
+{% endblock %}
+{% comment %}
+
+<div class="container-fluid">
+        <div class="alert alert-info" role="alert">
+            <h2>{{test.test_name}}</h2>
+        </div>
+            <hr>
+                    {% for question in questions %}
+                      <div class="col-sm-12 col-md-12">
+                        <div class="thumbnail alert alert-info">
+
+                            <p class="bg-primary btn-lg">{{ forloop.counter }}:{{ questions.question_text }}</p>
+                        <hr>
+                            <img id="image_block" src="{{ questions.question_image.url }}" alt="{{ questions.question_text }}">
+                            <hr>
+                            {% for answer in answers %}
+                           <p class="bg-primary btn-lg"><label> <input type="radio" name="answer" value="{{ answer.answer_correct }}"> {{ answer.answer_text }} </label></p>
+                            {% endfor %}
+                        <hr>
+                            <a href="/testing/sections/{{section.section_alias}}/{{test.test_alias}}/{{ in }}" class="btn btn-lg btn-success btn-block">Наступне питання</a>
+                        </div>
+                      </div>
+                    {% endfor %}
+        </div>{% endcomment %}
